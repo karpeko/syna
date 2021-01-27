@@ -104,15 +104,3 @@
   </div>
   </div>
 </header>
-{{- if .Params.particles }}
-{{- if .page.File.Dir -}}
-  <script>
-    var fragmentName = "{{ .Name }}";
-    {{- $file_path := printf "%s%s/config.json" .page.File.Dir .Name -}}
-    window.syna.api.register("hero", "hero-" + fragmentName, {
-      selector: "{{ printf "%s-particles-js" .Name }}",
-      config: {{ if fileExists $file_path -}} JSON.parse({{ readFile $file_path | safeHTML }}) {{- else -}} null {{- end -}},
-    });
-  </script>
-  {{ end -}}
-{{ end -}}
